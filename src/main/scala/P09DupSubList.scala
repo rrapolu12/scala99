@@ -1,0 +1,20 @@
+object P09DupSubList {
+
+
+  def pack[A](ls: List[A]): List[List[A]] = {
+    if (ls.isEmpty) List(List())
+    else {
+      val (packed, next) = ls span {
+        _ == ls.head
+      }
+      if (next == Nil) List(packed)
+      else packed :: pack(next)
+    }
+  }
+
+  def main(args: Array[String]): Unit = {
+
+    val ls = List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e)
+    println(pack(ls))
+  }
+}
